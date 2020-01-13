@@ -13,7 +13,8 @@ services:
   php-fpm:
     volumes:
       - ./data:/var/www/html
-    build: ./
+    build: ./php-fpm
+    command: bash -c chown www-data public/images
     links:
       - db
     depends_on:
