@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploader->upload();
 }
 
+$images = $uploader->getImages();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,6 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" name="image" @change="selectFile">
             <input type="submit" value="upload" @click="upload">
         </form>
+        <ul>
+            <?php foreach ($images as $image) : ?>
+                <li><a href="<?= h(basename(IMAGES_DIR)) . '/' . basename($image); ?>"><img src="<?= h($image); ?>"></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
     <script src="js/main.js"></script>
 </body>
